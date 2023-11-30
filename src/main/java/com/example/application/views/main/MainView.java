@@ -19,9 +19,7 @@ public class MainView extends VerticalLayout {
 
         confirmButton.addClickListener(event -> helloName.setText("hey " + firstname.getValue().trim().toLowerCase() + " " + surname.getValue().trim().toLowerCase()));
 
-        nextPageButton.addClickListener(event -> {
-            getUI().ifPresent(ui -> ui.navigate(SecondView.class));
-        });
+        nextPageButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate(SecondView.class)));
 
         add(firstname, surname, confirmButton, helloName, nextPageButton);
     }
