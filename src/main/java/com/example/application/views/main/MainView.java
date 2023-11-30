@@ -17,9 +17,7 @@ public class MainView extends VerticalLayout {
         Button nextPageButton = new Button("Go to second page");
         Paragraph helloName = new Paragraph();
 
-        confirmButton.addClickListener(event -> {
-            helloName.setText("hey " + firstname.getValue().trim().toLowerCase() + " " + surname.getValue().trim().toLowerCase());
-        });
+        confirmButton.addClickListener(event -> helloName.setText("hey " + firstname.getValue().trim().toLowerCase() + " " + surname.getValue().trim().toLowerCase()));
 
         nextPageButton.addClickListener(event -> {
             getUI().ifPresent(ui -> ui.navigate(SecondView.class));
