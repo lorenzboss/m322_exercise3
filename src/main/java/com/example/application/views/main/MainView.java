@@ -21,6 +21,7 @@ public class MainView extends VerticalLayout {
 
         nextPageButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate(SecondView.class)));
 
+        // Test
         add(firstname, surname, confirmButton, helloName, nextPageButton);
     }
 }
