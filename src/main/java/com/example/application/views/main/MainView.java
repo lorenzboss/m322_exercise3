@@ -1,32 +1,30 @@
 package com.example.application.views.main;
 
-import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@PageTitle("Main")
+@PageTitle("main view")
 @Route(value = "")
-public class MainView extends HorizontalLayout {
-
-    private TextField name;
-    private Button sayHello;
-
+public class MainView extends VerticalLayout {
     public MainView() {
-        name = new TextField("Your name");
-        sayHello = new Button("Say hello");
-        sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
+        TextField firstname = new TextField("Firstname*");
+        TextField surname = new TextField("Surname*");
+        Button confirmButton = new Button("Confirm");
+        Button nextPageButton = new Button("Go to second page");
+        Paragraph helloName = new Paragraph();
+
+        confirmButton.addClickListener(event -> {
+            helloName.setText("hey " + firstname.getValue().trim().toLowerCase() + " " + surname.getValue().trim().toLowerCase());
         });
-        sayHello.addClickShortcut(Key.ENTER);
 
-        setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, sayHello);
+        nextPageButton.addClickListener(event -> {
+            getUI().ifPresent(ui -> ui.navigate(SecondView.class));
+        });
 
-        add(name, sayHello);
+        add(firstname, surname, confirmButton, helloName, nextPageButton);
     }
-
 }
